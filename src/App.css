@@ -68,9 +68,6 @@
 .content {
     grid-area: c;
     color: aqua;
-}
-
-.content-wrapper {
     background-color: bisque;
 }
 
