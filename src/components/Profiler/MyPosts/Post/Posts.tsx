@@ -1,5 +1,5 @@
 import React from "react";
-import "./Posts.module.css";
+// @ts-ignore
 import P from "./Posts.module.css";
 
 type MyPostsType = {

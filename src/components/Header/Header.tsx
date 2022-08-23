@@ -1,5 +1,6 @@
 import React from "react";
-import H from "./Header.module.css";
+// @ts-ignore
+import H from './Header.module.css';
 
 export const Header = () => {
     return (

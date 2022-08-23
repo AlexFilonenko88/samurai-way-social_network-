@@ -1,5 +1,5 @@
 import React from "react";
-import "./Profiler.module.css";
+// @ts-ignore
 import P from "./Profiler.module.css";
 import {MyPosts} from "./MyPosts/MyPosts";
 

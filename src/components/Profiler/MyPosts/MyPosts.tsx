@@ -1,5 +1,6 @@
 import React from "react";
 import "./MyPosts.module.css";
+// @ts-ignore
 import P from "./MyPosts.module.css";
 import {Post} from "./Post/Posts";
 

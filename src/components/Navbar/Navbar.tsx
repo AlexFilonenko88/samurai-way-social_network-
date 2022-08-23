@@ -1,6 +1,6 @@
 import React from "react";
-import "./Navbar.module.css"
-import N from "./Navbar.module.css"
+// @ts-ignore
+import N from './Navbar.module.css'
 
 export const Navbar = () => {
     return (
