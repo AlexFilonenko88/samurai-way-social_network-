@@ -1,0 +1,18 @@
+.content {
+    grid-area: c;
+    color: aqua;
+    background-color: bisque;
+}
+
+.content img {
+    width: 900px;
+    height: 500px;
+}
+
+.item {
+    color: black;
+}
+
+.descriptionBlock {
+    padding: 10px;
+}

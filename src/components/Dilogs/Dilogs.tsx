@@ -1,32 +1,51 @@
 import React from "react";
 // @ts-ignore
 import D from './Dialogs.module.css'
+import {NavLink} from "react-router-dom";
+
+type DialogItemType = {
+    name: string
+    id: string
+}
+
+type MessageType = {
+    message: string
+}
+
+const DialogItem = (props: DialogItemType) => {
+    let path = '/dialogs/' + props.id;
+    return (
+        <div className={D.dialog + ' ' + D.active}>
+            <NavLink to={path}>{props.name}</NavLink>
+        </div>
+    )
+}
+
+const Message = (props: MessageType) => {
+    return (
+        <div className={D.message}>{props.message}</div>
+    )
+}
 
 export const Dialogs = () => {
     return (
         <div className={D.dialogs}>
             <div className={D.dialogsItems}>
-                <div className={D.dialog + ' ' + D.active}>
-                    Alex
-                </div>
-                <div className={D.dialog}>
-                    Alex1
-                </div>
-                <div className={D.dialog}>
-                    Alex2
-                </div>
-                <div className={D.dialog}>
-                    Alex3
-                </div>
-                <div className={D.dialog}>
-                    Alex4
-                </div>
+
+                <DialogItem name='Alex' id='1'/>
+                <DialogItem name='Alex1' id='2'/>
+                <DialogItem name='Alex2' id='3'/>
+                <DialogItem name='Alex3' id='4'/>
+                <DialogItem name='Alex4' id='5'/>
+
             </div>
             <div className={D.message}>
                 <div className={D.messages}>
-                    <div className={D.message}>Hi</div>
-                    <div className={D.message}>How is ypur it&</div>
-                    <div className={D.message}>Yo</div>
+
+                    <Message message='Hi'/>
+                    <Message message='How is ypur it&'/>
+                    <Message message='Yo'/>
+
                 </div>
             </div>
         </div>
