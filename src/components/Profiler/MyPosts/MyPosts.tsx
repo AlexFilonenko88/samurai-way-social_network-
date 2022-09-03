@@ -4,7 +4,29 @@ import "./MyPosts.module.css";
 import P from "./MyPosts.module.css";
 import {Post} from "./Post/Posts";
 
-export const MyPosts = () => {
+type PostsType = {
+    // id: number
+    // message: string
+    // likesCount: number
+    posts: Array<Posts>
+}
+type Posts = {
+    id: number
+    message: string
+    likesCount: number
+}
+
+export const MyPosts = (props: PostsType) => {
+    // let postData = [
+    //     {id:1, message: 'Hi, how are you?', likesCount: 2},
+    //     {id:2, message: 'Its my first post', likesCount: 5},
+    //     {id:2, message: 'Its my first post1', likesCount: 55},
+    //     {id:2, message: 'Its my first post2', likesCount: 9},
+    // ]
+
+    let postsElements = props.postData
+        .map(elem => <Post message={elem.message} likesCount={elem.likesCount}/>)
+
     return (
         <div className={P.postBlock}>
             <h3>My posts</h3>
@@ -17,8 +39,9 @@ export const MyPosts = () => {
                 </div>
             </div>
             <div className={P.item}>
-                <Post message='Hi, how are you?'/>
-                <Post message="Its my first post"/>
+
+                {postsElements}
+
             </div>
         </div>
     )

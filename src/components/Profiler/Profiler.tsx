@@ -4,14 +4,28 @@ import P from "./Profiler.module.css";
 import {MyPosts} from "./MyPosts/MyPosts";
 import {ProfilerInfo} from './ProfilerInfo/ProfilerInfo'
 
+type PostsType = {
+    // id: number
+    // message: string
+    // likesCount: number
+    posts: Array<Posts>
+}
+type Posts = {
+    id: number
+    message: string
+    likesCount: number
+}
 
-export const Profiler = () => {
+export const Profiler = (props: PostsType) => {
+
+
+    // @ts-ignore
     return (
         <div>
 
             <ProfilerInfo/>
 
-            <MyPosts/>
+            <MyPosts posts={props.state.postData} />
 
         </div>
     )

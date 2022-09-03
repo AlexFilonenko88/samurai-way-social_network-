@@ -1,50 +1,52 @@
 import React from "react";
 // @ts-ignore
 import D from './Dialogs.module.css'
-import {NavLink} from "react-router-dom";
+import {Message} from "./Message/Message";
 
 type DialogItemType = {
     name: string
-    id: string
+    id: number
 }
 
 type MessageType = {
     message: string
 }
 
-const DialogItem = (props: DialogItemType) => {
-    let path = '/dialogs/' + props.id;
-    return (
-        <div className={D.dialog + ' ' + D.active}>
-            <NavLink to={path}>{props.name}</NavLink>
-        </div>
-    )
+type PostsType = {
+    // id: number
+    // message: string
+    // likesCount: number
+    posts: Array<Posts>
+}
+type Posts = {
+    id: number
+    message: string
+    likesCount: number
 }
 
-const Message = (props: MessageType) => {
-    return (
-        <div className={D.message}>{props.message}</div>
-    )
+function DialogItem(props: { name: string, id: number }) {
+    return null;
 }
 
-export const Dialogs = () => {
+export const Dialogs = (props:PostsType) => {
+
+    let dialogsElements = props.state.dialogs
+        .map(dailog => <DialogItem name={dailog.name} id={dailog.id}/>)
+
+    let messsagesElements = props.state.messsages
+        .map(m => <Message message={m.message}/>)
+
     return (
         <div className={D.dialogs}>
             <div className={D.dialogsItems}>
 
-                <DialogItem name='Alex' id='1'/>
-                <DialogItem name='Alex1' id='2'/>
-                <DialogItem name='Alex2' id='3'/>
-                <DialogItem name='Alex3' id='4'/>
-                <DialogItem name='Alex4' id='5'/>
+                {dialogsElements}
 
             </div>
             <div className={D.message}>
                 <div className={D.messages}>
 
-                    <Message message='Hi'/>
-                    <Message message='How is ypur it&'/>
-                    <Message message='Yo'/>
+                    {messsagesElements}
 
                 </div>
             </div>
