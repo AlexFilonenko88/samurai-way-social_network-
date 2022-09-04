@@ -23,3 +23,4 @@ export let state = {
     ],
     sidebar: {}
 }
+export type State = typeof state

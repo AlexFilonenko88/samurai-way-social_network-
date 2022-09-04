@@ -1,39 +1,25 @@
 import React from "react";
-// @ts-ignore
 import D from './Dialogs.module.css'
 import {Message} from "./Message/Message";
+import {State} from "../Redux/State";
 
-type DialogItemType = {
-    name: string
-    id: number
-}
 
-type MessageType = {
-    message: string
-}
 
-type PostsType = {
-    // id: number
-    // message: string
-    // likesCount: number
-    posts: Array<Posts>
-}
-type Posts = {
-    id: number
-    message: string
-    likesCount: number
+
+type Props = {
+  state: State
 }
 
 function DialogItem(props: { name: string, id: number }) {
     return null;
 }
 
-export const Dialogs = (props:PostsType) => {
+export const Dialogs = (props:Props) => {
 
-    let dialogsElements = props.state.dialogs
+    let dialogsElements = props.state.profilePage.dialogs
         .map(dailog => <DialogItem name={dailog.name} id={dailog.id}/>)
 
-    let messsagesElements = props.state.messsages
+    let messsagesElements = props.state.dialogsPage
         .map(m => <Message message={m.message}/>)
 
     return (

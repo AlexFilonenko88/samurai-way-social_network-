@@ -5,6 +5,7 @@ import {Navbar} from "./components/Navbar/Navbar";
 import {Profiler} from "./components/Profiler/Profiler";
 import {Dialogs} from "./components/Dilogs/Dilogs";
 import {BrowserRouter, Route} from "react-router-dom";
+import {State} from "./components/Redux/State";
 
 type Posts = {
     id: number
@@ -22,23 +23,12 @@ type Messsages = {
     name: string
 }
 
-type StateType = {
-    id: number
-    message: string
-    likesCount: number
+
+type Props = {
+    state: State
 }
 
-type PostsType = {
-    // id: number
-    // message: string
-    // likesCount: number
-    posts: Array<Posts>
-    dialogs: Array<Dialogs>
-    messsages: Array<Messsages>
-    state:  Array<StateType>
-}
-
-function App(props:PostsType) {
+function App(props: Props) {
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
@@ -53,8 +43,8 @@ function App(props:PostsType) {
                     {/*<Route path='/profile' component={Profiler}/>*/}
                     {/*<Dialogs/>*/}
 
-                    <Route path='/dialogs' render={() => <Dialogs state={props.state.dialogsPage} />}/>
-                    <Route path='/profile' render={() => <Profiler posts={props.state.profilePage} />}/>
+                    <Route path='/dialogs' render={() => <Dialogs state={props.state}/>}/>
+                    <Route path='/profile' render={() => <Profiler state={props.state}/>}/>
                 </div>
             </div>
         </BrowserRouter>

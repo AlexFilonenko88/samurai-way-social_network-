@@ -1,32 +1,18 @@
 import React from "react";
-// @ts-ignore
 import P from "./Profiler.module.css";
 import {MyPosts} from "./MyPosts/MyPosts";
 import {ProfilerInfo} from './ProfilerInfo/ProfilerInfo'
+import {State} from "../Redux/State";
 
-type PostsType = {
-    // id: number
-    // message: string
-    // likesCount: number
-    posts: Array<Posts>
-}
-type Posts = {
-    id: number
-    message: string
-    likesCount: number
+type Props = {
+    state: State
 }
 
-export const Profiler = (props: PostsType) => {
-
-
-    // @ts-ignore
+ export const Profiler = (props: Props) => {
     return (
         <div>
-
             <ProfilerInfo/>
-
-            <MyPosts posts={props.state.postData} />
-
+            <MyPosts posts={props.state.profilePage.postData} />
         </div>
     )
 }

@@ -1,13 +1,9 @@
 import React from "react";
 import "./MyPosts.module.css";
-// @ts-ignore
 import P from "./MyPosts.module.css";
 import {Post} from "./Post/Posts";
 
-type PostsType = {
-    // id: number
-    // message: string
-    // likesCount: number
+type Props = {
     posts: Array<Posts>
 }
 type Posts = {
@@ -16,15 +12,8 @@ type Posts = {
     likesCount: number
 }
 
-export const MyPosts = (props: PostsType) => {
-    // let postData = [
-    //     {id:1, message: 'Hi, how are you?', likesCount: 2},
-    //     {id:2, message: 'Its my first post', likesCount: 5},
-    //     {id:2, message: 'Its my first post1', likesCount: 55},
-    //     {id:2, message: 'Its my first post2', likesCount: 9},
-    // ]
-
-    let postsElements = props.postData
+export const MyPosts = (props: Props) => {
+    let postsElements = props.posts
         .map(elem => <Post message={elem.message} likesCount={elem.likesCount}/>)
 
     return (
@@ -39,9 +28,7 @@ export const MyPosts = (props: PostsType) => {
                 </div>
             </div>
             <div className={P.item}>
-
                 {postsElements}
-
             </div>
         </div>
     )
