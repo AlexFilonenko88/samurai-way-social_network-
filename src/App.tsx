@@ -5,27 +5,11 @@ import {Navbar} from "./components/Navbar/Navbar";
 import {Profiler} from "./components/Profiler/Profiler";
 import {Dialogs} from "./components/Dilogs/Dilogs";
 import {BrowserRouter, Route} from "react-router-dom";
-import {State} from "./components/Redux/State";
-
-type Posts = {
-    id: number
-    message: string
-    likesCount: number
-}
-
-type Dialogs = {
-    id: number
-    name: string
-}
-
-type Messsages = {
-    id: number
-    name: string
-}
-
+import {addPost, State} from "./components/Redux/State";
 
 type Props = {
     state: State
+    addPost: (postMessage: string) => void
 }
 
 function App(props: Props) {
@@ -36,19 +20,19 @@ function App(props: Props) {
 
                 <Navbar/>
 
-                {/*<Profiler/>*/}
                 <div className='app-wrapper-content'>
-                    {/*отвечает за один компонент (название компонента)*/}
-                    {/*<Route path='/dialogs' component={Dialogs}/>*/}
-                    {/*<Route path='/profile' component={Profiler}/>*/}
-                    {/*<Dialogs/>*/}
-
                     <Route path='/dialogs' render={() => <Dialogs state={props.state}/>}/>
-                    <Route path='/profile' render={() => <Profiler state={props.state}/>}/>
+                    <Route path='/profile' render={() => <Profiler state={props.state} addPost={props.addPost}/>}/>
                 </div>
             </div>
         </BrowserRouter>
     );
+}
+
+type MessageType = {
+    message: string
+    // posts: Array<PostType>
+    addPostCallback: (message:string | null) => void
 }
 
 export default App;

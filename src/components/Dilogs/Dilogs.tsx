@@ -3,9 +3,6 @@ import D from './Dialogs.module.css'
 import {Message} from "./Message/Message";
 import {State} from "../Redux/State";
 
-
-
-
 type Props = {
   state: State
 }
