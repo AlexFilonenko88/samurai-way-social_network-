@@ -32,7 +32,7 @@ function App(props: Props) {
 type MessageType = {
     message: string
     // posts: Array<PostType>
-    addPostCallback: (message:string | null) => void
+    addPostCallback: (message: string | null) => void
 }
 
 export default App;

@@ -6,5 +6,5 @@ import {addPost, State} from "./components/Redux/State";
 import {state} from './components/Redux/State'
 import {renderTree} from "./components/render";
 
-
+// addPost('!!!!!!!')
 renderTree(state);

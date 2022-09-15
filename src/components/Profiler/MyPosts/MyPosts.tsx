@@ -1,4 +1,4 @@
-import React, {useRef} from "react";
+import React, {useRef, createRef} from "react";
 import "./MyPosts.module.css";
 import P from "./MyPosts.module.css";
 import {Post} from "./Post/Posts";
@@ -21,6 +21,7 @@ export const MyPosts = (props: Props) => {
 
     let addPost = () => {
         let text = newPostElement.current?.value;
+        props.addPost(text)
 
         if(newPostElement.current){
             alert(newPostElement.current)
