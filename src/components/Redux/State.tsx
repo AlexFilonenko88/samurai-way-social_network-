@@ -36,7 +36,7 @@ type postMessageType = {
 export let addPost = (postMessage: string) => {
     const newPost: postMessageType = {
         id:5,
-        message: postMessage && '---',
+        message: postMessage,
         likesCount: 0,
     }
 
