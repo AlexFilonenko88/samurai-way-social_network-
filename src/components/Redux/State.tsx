@@ -1,4 +1,6 @@
-import {renderTree} from "../render";
+let renderTree = () => {
+    console.log('Hello')
+}
 
 export let state = {
     profilePage: {
@@ -16,6 +18,7 @@ export let state = {
             {id: 4, name: "Alex3"},
             {id: 5, name: "Alex4"},
         ],
+        newPostText: 'Hello'
     },
     dialogsPage: [
         {id: 1, message: "Hi"},
@@ -33,16 +36,26 @@ type postMessageType = {
     likesCount: number
 }
 
-export let addPost = (postMessage: string) => {
+export const addPost = () => { // postMessage: string
     const newPost: postMessageType = {
         id:5,
-        message: postMessage,
+        message: state.profilePage.newPostText,
         likesCount: 0,
     }
 
     state.profilePage.posts.push(newPost)
 
     renderTree(state);
+}
+
+export const updateNewPostText = (newText: string) =>{
+    state.profilePage.newPostText = newText
+
+    renderTree(state);
+}
+
+export const subscribe = (observer) => {
+    renderTree = observer // наблюдатель (observer)
 }
 
 export type State = typeof state

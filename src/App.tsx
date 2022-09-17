@@ -5,11 +5,18 @@ import {Navbar} from "./components/Navbar/Navbar";
 import {Profiler} from "./components/Profiler/Profiler";
 import {Dialogs} from "./components/Dilogs/Dilogs";
 import {BrowserRouter, Route} from "react-router-dom";
-import {addPost, State} from "./components/Redux/State";
+import {addPost, State, updateNewPostText} from "./components/Redux/State";
+
+// type PPP = {
+//     newPostText: string
+// }
 
 type Props = {
     state: State
     addPost: (postMessage: string) => void
+    newPostText: string
+    updateNewPostText: (newText: string) => void
+    // profilePage: Object<PPP>
 }
 
 function App(props: Props) {
@@ -22,7 +29,14 @@ function App(props: Props) {
 
                 <div className='app-wrapper-content'>
                     <Route path='/dialogs' render={() => <Dialogs state={props.state}/>}/>
-                    <Route path='/profile' render={() => <Profiler state={props.state} addPost={props.addPost}/>}/>
+                    <Route path='/profile'
+                           render={() =>
+                               <Profiler
+                                   profilePage={props.state.profilePage}
+                                   addPost={props.addPost}
+                                   updateNewPostText={props.updateNewPostText}
+                               />}
+                    />
                 </div>
             </div>
         </BrowserRouter>
