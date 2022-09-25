@@ -5,15 +5,16 @@ import {Post} from "./Post/Posts";
 import {State} from "../../Redux/State";
 
 type Props = {
-    state: State
     posts: Array<Posts>
     addPost: (postMessage: string) => void
     updateNewPostText:(newText: string)=> void
+    newPostText: string
 }
 type Posts = {
     id: number
     message: string
     likesCount: number
+    dispatch: string
 }
 
 export const MyPosts = (props: Props) => {
@@ -24,12 +25,13 @@ export const MyPosts = (props: Props) => {
 
     let addPost = () => {
         let text = newPostElement.current!.value;
-        props.addPost(text)
+        props.dispatch({type: 'ADD=POST'})
     }
 
     const onPostChange = () => {
         let text = newPostElement.current!.value;
-        props.updateNewPostText(text)
+        let action = {type: 'UPDATE-NEW-POST-TEXT', newText:text};
+        props.dispatch(action)
     }
 
     return (
@@ -37,7 +39,7 @@ export const MyPosts = (props: Props) => {
             <h3>My posts</h3>
             <div>
                 <div>
-                    <textarea onClick={onPostChange} ref={newPostElement} value={props.state.profilePage.newPostText}/>
+                    <textarea onClick={onPostChange} ref={newPostElement}/>
                 </div>
                 <div>
                     <button onClick={addPost}>Add post

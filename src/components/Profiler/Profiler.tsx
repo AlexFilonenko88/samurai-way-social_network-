@@ -5,11 +5,9 @@ import {ProfilerInfo} from './ProfilerInfo/ProfilerInfo'
 import {addPost, State} from "../Redux/State";
 
 type Props = {
-    state: State
+    profilePage: any
     addPost: (postMessage: string) => void
-    newPostText: string
     updateNewPostText:(newText: string)=> void
-    // profilePage: {}
 }
 
  export const Profiler = (props: Props) => {
@@ -17,9 +15,9 @@ type Props = {
         <div>
             <ProfilerInfo/>
             <MyPosts
-                posts={props.state.profilePage.posts}
-                newPostsText={props.state.profilePage.newPostText}
-                addPost={props.addPost}
+                posts={props.profilePage.posts}
+                newPostText={props.profilePage.newPostText}
+                dispatch={props.dispatch}
                 updateNewPostText={props.updateNewPostText}
             />
         </div>

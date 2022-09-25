@@ -7,16 +7,10 @@ import {Dialogs} from "./components/Dilogs/Dilogs";
 import {BrowserRouter, Route} from "react-router-dom";
 import {addPost, State, updateNewPostText} from "./components/Redux/State";
 
-// type PPP = {
-//     newPostText: string
-// }
-
 type Props = {
     state: State
     addPost: (postMessage: string) => void
-    newPostText: string
     updateNewPostText: (newText: string) => void
-    // profilePage: Object<PPP>
 }
 
 function App(props: Props) {
@@ -33,7 +27,7 @@ function App(props: Props) {
                            render={() =>
                                <Profiler
                                    profilePage={props.state.profilePage}
-                                   addPost={props.addPost}
+                                   dispatch={props.dispatch}
                                    updateNewPostText={props.updateNewPostText}
                                />}
                     />
