@@ -10,6 +10,7 @@ export const renderTree = (state) => {
         state={state}
         dispatch={store.dispatch.bind(store)}
         updateNewPostText={store.updateNewPostText.bind(store)}/>,
+        store={store},
         document.getElementById('root'));
 }
 

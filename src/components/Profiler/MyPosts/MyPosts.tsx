@@ -2,7 +2,7 @@ import React, {useRef, createRef} from "react";
 import "./MyPosts.module.css";
 import P from "./MyPosts.module.css";
 import {Post} from "./Post/Posts";
-import {State} from "../../Redux/State";
+import {addPostActionCreator, updateNewPostTextActionCreator} from "../../Redux/State";
 
 type Props = {
     posts: Array<Posts>
@@ -25,12 +25,12 @@ export const MyPosts = (props: Props) => {
 
     let addPost = () => {
         let text = newPostElement.current!.value;
-        props.dispatch({type: 'ADD=POST'})
+        props.dispatch(addPostActionCreator());
     }
 
     const onPostChange = () => {
         let text = newPostElement.current!.value;
-        let action = {type: 'UPDATE-NEW-POST-TEXT', newText:text};
+        let action = updateNewPostTextActionCreator(text);
         props.dispatch(action)
     }
 

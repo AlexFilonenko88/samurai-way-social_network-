@@ -1,4 +1,7 @@
-import Any = jasmine.Any;
+const ADD_POST = 'ADD-POST';
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY';
+const SEND_MESSAGE = 'SEND-MESSAGE';
 
 export let onChange = () => {
     console.log('Hello')
@@ -23,13 +26,23 @@ export let store = {
             ],
             newPostText: 'Hello'
         },
-        dialogsPage: [
-            {id: 1, message: "Hi"},
-            {id: 2, message: "How is ypur it&"},
-            {id: 3, message: "Yo"},
-            {id: 4, message: "Yo"},
-            {id: 5, message: "Yo"},
-        ],
+        dialogsPage: {
+            dialogs: [
+                {id: 1, message: "Hi"},
+                {id: 2, message: "How is ypur it&"},
+                {id: 3, message: "Yo"},
+                {id: 4, message: "Yo"},
+                {id: 5, message: "Yo"},
+            ],
+            message: [
+                {id: 1, message: 'Hi'},
+                {id: 2, message: 'How...'},
+                {id: 3, message: 'Yo'},
+                {id: 4, message: 'Yo'},
+                {id: 5, message: 'Yo'},
+            ],
+            newMessageBody: "",
+        },
         sidebar: {}
     },
 
@@ -42,30 +55,11 @@ export let store = {
     // },
 
     subscribe(observer: () => void) {
-        onChange = observer // наблюдатель (observer)
+        this._callSubscriber = observer;
     },
 
-    // addPost() {
-    //     const newPost: postMessageType = {
-    //         id: 5,
-    //         message: this._state.profilePage.newPostText,
-    //         likesCount: 0,
-    //     }
-    //
-    //     this._state.profilePage.posts.push(newPost)
-    //
-    //     onChange();
-    // },
-
-    // updateNewPostText(newText: string) {
-    //     console.log('new text', newText)
-    //     this._state.profilePage.newPostText = newText
-    //
-    //     onChange();
-    // },
-
     dispatch(action) { // что именно сделать type: 'ADD-POST'
-        if (action.type === 'ADD=POST') {
+        if (action.type === ADD_POST) {
             const newPost: postMessageType = {
                 id: 5,
                 message: this._state.profilePage.newPostText,
@@ -73,16 +67,30 @@ export let store = {
             };
 
             this._state.profilePage.posts.push(newPost);
+            this._state.profilePage.newPostText = '';
+            this._callSubscriber(this._state);
 
             onChange();
-        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+        } else if (action.type === UPDATE_NEW_POST_TEXT) {
             this._state.profilePage.newPostText = action.newText;
-
-            onChange();
+            this._callSubscriber(this._state);
+        } else if (action.type === UPDATE_NEW_MESSAGE_BODY) {
+            this._state.dialogsPage.newMessageBody = action.body;
+            this._callSubscriber(this._state);
+        } else if (action.type === SEND_MESSAGE) {
+            let body = this._state.dialogsPage.newMessageBody;
+            this._state.dialogsPage.newMessageBody = '';
+            this._state.dialogsPage.message.push({id: 6, message: body});
+            this._callSubscriber(this._state);
         }
     }
 }
 
+export const addPostActionCreator = () => ({ type: ADD_POST});
+export const updateNewPostTextActionCreator = (text: string) => ({type: UPDATE_NEW_POST_TEXT, newText: text});
+
+export const sendMessageCreator = () => ({ type: SEND_MESSAGE});
+export const updateNewMessageBodyCreator = (text: string) => ({type: UPDATE_NEW_MESSAGE_BODY, body: body});
 
 type postMessageType = {
     id: number
