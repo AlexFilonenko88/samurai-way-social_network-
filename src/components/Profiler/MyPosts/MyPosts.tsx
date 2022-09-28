@@ -2,19 +2,18 @@ import React, {useRef, createRef} from "react";
 import "./MyPosts.module.css";
 import P from "./MyPosts.module.css";
 import {Post} from "./Post/Posts";
-import {addPostActionCreator, updateNewPostTextActionCreator} from "../../Redux/State";
+import {ActionsTypes, addPostAC, changeNewTextAC} from "../../Redux/State";
 
 type Props = {
     posts: Array<Posts>
-    addPost: (postMessage: string) => void
-    updateNewPostText:(newText: string)=> void
+    dispatch: (action: ActionsTypes) => void
     newPostText: string
 }
 type Posts = {
     id: number
     message: string
     likesCount: number
-    dispatch: string
+
 }
 
 export const MyPosts = (props: Props) => {
@@ -25,12 +24,12 @@ export const MyPosts = (props: Props) => {
 
     let addPost = () => {
         let text = newPostElement.current!.value;
-        props.dispatch(addPostActionCreator());
+        props.dispatch(addPostAC(text));
     }
 
     const onPostChange = () => {
         let text = newPostElement.current!.value;
-        let action = updateNewPostTextActionCreator(text);
+        let action = changeNewTextAC(text);
         props.dispatch(action)
     }
 

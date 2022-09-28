@@ -4,16 +4,14 @@ import './index.css';
 import App from './App';
 import {store} from "./components/Redux/State";
 
-
-export const renderTree = (state) => {
+export const renderTree = () => {
     ReactDOM.render(<App
-        state={state}
-        dispatch={store.dispatch.bind(store)}
-        updateNewPostText={store.updateNewPostText.bind(store)}/>,
-        store={store},
+        store={store}
+        />,
+
         document.getElementById('root'));
 }
 
-store.subscribe(onChange);
+store.subscribe(renderTree);
 
-renderTree(store.getState());
+renderTree();

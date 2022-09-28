@@ -3,20 +3,34 @@ const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY';
 const SEND_MESSAGE = 'SEND-MESSAGE';
 
-export let onChange = () => {
-    console.log('Hello')
+
+export type StoreType = {
+    _state: RootStateType
+    changeNewText: (newText: string) => void
+    _callSubscriber: (state?: RootStateType) => void
+    subscribe: (callback: () => void) => void
+    getState: () => RootStateType
+    dispatch: (action: ActionsTypes) => void
 }
 
-export let store = {
+export type ActionsTypes = ReturnType<typeof changeNewTextAC> | ReturnType<typeof addPostAC> | ReturnType<typeof sendMessageCreator> | ReturnType<typeof updateNewMessageBodyCreator>
+
+
+
+export const store: StoreType = {
     _state: {
         profilePage: {
-            messageForNewPost: 'fggh',
+
             posts: [
                 {id: 1, message: 'Hi, how are you?', likesCount: 2},
                 {id: 2, message: 'Its my first post', likesCount: 5},
                 {id: 3, message: 'Its my first post1', likesCount: 55},
                 {id: 4, message: 'Its my first post2', likesCount: 9},
             ],
+
+            newPostText: 'Hello'
+        },
+        dialogsPage: {
             dialogs: [
                 {id: 1, name: "Alex"},
                 {id: 2, name: "Alex1"},
@@ -24,17 +38,7 @@ export let store = {
                 {id: 4, name: "Alex3"},
                 {id: 5, name: "Alex4"},
             ],
-            newPostText: 'Hello'
-        },
-        dialogsPage: {
-            dialogs: [
-                {id: 1, message: "Hi"},
-                {id: 2, message: "How is ypur it&"},
-                {id: 3, message: "Yo"},
-                {id: 4, message: "Yo"},
-                {id: 5, message: "Yo"},
-            ],
-            message: [
+            messages: [
                 {id: 1, message: 'Hi'},
                 {id: 2, message: 'How...'},
                 {id: 3, message: 'Yo'},
@@ -45,17 +49,16 @@ export let store = {
         },
         sidebar: {}
     },
+    _callSubscriber(){},
 
-    getState() {
-        return this._state;
+
+    changeNewText(newText: string) {
+        this._state.profilePage.newPostText = newText;
+        this._callSubscriber();
     },
 
-    // rerenderEntireTree(){
-    //     console.log('WWWWWWW')
-    // },
-
-    subscribe(observer: () => void) {
-        this._callSubscriber = observer;
+    subscribe(callback: () => void) {
+        this._callSubscriber = callback;
     },
 
     dispatch(action) { // что именно сделать type: 'ADD-POST'
@@ -70,9 +73,8 @@ export let store = {
             this._state.profilePage.newPostText = '';
             this._callSubscriber(this._state);
 
-            onChange();
         } else if (action.type === UPDATE_NEW_POST_TEXT) {
-            this._state.profilePage.newPostText = action.newText;
+            this._state.profilePage.newPostText = action.postText;
             this._callSubscriber(this._state);
         } else if (action.type === UPDATE_NEW_MESSAGE_BODY) {
             this._state.dialogsPage.newMessageBody = action.body;
@@ -80,17 +82,32 @@ export let store = {
         } else if (action.type === SEND_MESSAGE) {
             let body = this._state.dialogsPage.newMessageBody;
             this._state.dialogsPage.newMessageBody = '';
-            this._state.dialogsPage.message.push({id: 6, message: body});
+            this._state.dialogsPage.messages.push({id: 6, message: body});
             this._callSubscriber(this._state);
         }
-    }
+    },
+
+    getState() {
+        return this._state;
+    },
 }
 
-export const addPostActionCreator = () => ({ type: ADD_POST});
-export const updateNewPostTextActionCreator = (text: string) => ({type: UPDATE_NEW_POST_TEXT, newText: text});
 
-export const sendMessageCreator = () => ({ type: SEND_MESSAGE});
-export const updateNewMessageBodyCreator = (text: string) => ({type: UPDATE_NEW_MESSAGE_BODY, body: body});
+export const changeNewTextAC = (newText: string) => {
+    return  {
+        type: "UPDATE-NEW-POST-TEXT",
+        postText: newText
+    }as const
+}
+
+export const addPostAC = (postText: string) => {
+    return  {
+        type: 'ADD-POST',
+        postText: postText
+    } as const
+}
+export const sendMessageCreator = () => ({type: SEND_MESSAGE}  as const);
+export const updateNewMessageBodyCreator = (body: string) => ({type: UPDATE_NEW_MESSAGE_BODY, body} as const);
 
 type postMessageType = {
     id: number
@@ -98,5 +115,48 @@ type postMessageType = {
     likesCount: number
 }
 
+type MessageType = {
+    id: number
+    message: string
+}
+
+type DialogType = {
+    id: number
+    name: string
+}
+
+export type PostType = {
+    id: number
+    message: string
+    likesCount: number
+}
+
+type ProfilePageType = {
+    newPostText: string
+    posts: Array<PostType>
+}
+
+type DialogPageType = {
+    dialogs: Array<DialogType>
+    messages: Array<MessageType>
+    newMessageBody: string
+}
+
+type SidebarType = {
+
+}
+export type RootStateType  ={
+    profilePage: ProfilePageType
+    dialogsPage: DialogPageType
+    sidebar :SidebarType
+}
+
 // export type State = typeof state
+//@ts-ignore
 window.store = store;
+
+
+
+// rerenderEntireTree(){
+//     console.log('WWWWWWW')
+// },

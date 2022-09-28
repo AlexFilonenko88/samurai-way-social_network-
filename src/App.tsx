@@ -5,15 +5,17 @@ import {Navbar} from "./components/Navbar/Navbar";
 import {Profiler} from "./components/Profiler/Profiler";
 import {Dialogs} from "./components/Dilogs/Dilogs";
 import {BrowserRouter, Route} from "react-router-dom";
-import {addPost, State, updateNewPostText} from "./components/Redux/State";
+import {ActionsTypes, addPostAC, store, StoreType} from "./components/Redux/State";
 
 type Props = {
-    state: State
-    addPost: (postMessage: string) => void
-    updateNewPostText: (newText: string) => void
+
+    store: StoreType
+
 }
 
 function App(props: Props) {
+    const state= props.store.getState()
+
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
@@ -29,9 +31,8 @@ function App(props: Props) {
                     <Route path='/profile'
                            render={() =>
                                <Profiler
-                                   profilePage={props.state.profilePage}
-                                   dispatch={props.dispatch}
-                                   updateNewPostText={props.updateNewPostText}
+                                   profilePage={state.profilePage}
+                                   dispatch={props.store.dispatch.bind(props.store)}
                                />}
                     />
                 </div>
@@ -40,10 +41,6 @@ function App(props: Props) {
     );
 }
 
-type MessageType = {
-    message: string
-    // posts: Array<PostType>
-    addPostCallback: (message: string | null) => void
-}
+
 
 export default App;

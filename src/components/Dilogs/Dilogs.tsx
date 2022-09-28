@@ -1,33 +1,33 @@
-import React from "react";
+import React, {ChangeEvent} from "react";
 import D from './Dialogs.module.css'
 import {Message} from "./Message/Message";
-import {sendMessageCreator, State, updateNewMessageBodyCreator} from "../Redux/State";
+import {sendMessageCreator, StoreType, updateNewMessageBodyCreator} from "../Redux/State";
 
 type Props = {
-    state: State
+    store: StoreType
 }
 
 function DialogItem(props: { name: string, id: number }) {
-    return null;
+    return (<div className={D.message}>{props.name}</div>)
 }
 
 export const Dialogs = (props: Props) => {
 
     let state = props.store.getState().dialogsPage
 
-    let dialogsElements = props.state.profilePage.dialogs
+    let dialogsElements = state.dialogs
         .map(dailog => <DialogItem name={dailog.name} id={dailog.id}/>);
 
-    let messsagesElements = props.state.dialogsPage
+    let messsagesElements = state.messages
         .map(m => <Message message={m.message}/>);
 
-    let newMessageBody = props.state.newMessageBody;
+    let newMessageBody = state.newMessageBody;
 
     let onSendMessageClick = () => {
         props.store.dispatch(sendMessageCreator());
     }
 
-    let onNewMessageChange = (e) => {
+    let onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         let body = e.target.value
         props.store.dispatch(updateNewMessageBodyCreator(body));
     }
