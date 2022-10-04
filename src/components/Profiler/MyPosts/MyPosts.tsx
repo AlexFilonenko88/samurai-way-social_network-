@@ -2,7 +2,8 @@ import React, {useRef, createRef} from "react";
 import "./MyPosts.module.css";
 import P from "./MyPosts.module.css";
 import {Post} from "./Post/Posts";
-import {ActionsTypes, addPostAC, changeNewTextAC} from "../../Redux/State";
+import {addPostAC, changeNewTextAC} from "../../../redux/profile-reducer";
+import {ActionsTypes} from "../../Redux/State";
 
 type Props = {
     posts: Array<Posts>
@@ -38,7 +39,7 @@ export const MyPosts = (props: Props) => {
             <h3>My posts</h3>
             <div>
                 <div>
-                    <textarea onClick={onPostChange} ref={newPostElement}/>
+                    <textarea onChange={onPostChange} ref={newPostElement}/>
                 </div>
                 <div>
                     <button onClick={addPost}>Add post

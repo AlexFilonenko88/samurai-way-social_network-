@@ -1,7 +1,8 @@
 import React, {ChangeEvent} from "react";
 import D from './Dialogs.module.css'
 import {Message} from "./Message/Message";
-import {sendMessageCreator, StoreType, updateNewMessageBodyCreator} from "../Redux/State";
+import {sendMessageCreator, updateNewMessageBodyCreator} from "../../redux/dialogs-reducer";
+import {StoreType} from "../Redux/State";
 
 type Props = {
     store: StoreType
