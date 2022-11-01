@@ -5,14 +5,16 @@ import {Navbar} from "./components/Navbar/Navbar";
 import {Profiler} from "./components/Profiler/Profiler";
 import {Dialogs} from "./components/Dilogs/Dilogs";
 import {BrowserRouter, Route} from "react-router-dom";
-import {ActionsTypes, store, StoreType} from "./components/Redux/State";
+import {ActionsTypes, store, StoreType} from "./components/Redux/store";
+import {AppStoreType} from "./components/Redux/redux-store";
+import {DialogsContainer} from "./components/Dilogs/DilogsContainer";
 
 type Props = {
-    store: StoreType
+    store: AppStoreType
 }
 
 function App(props: Props) {
-    const state= props.store.getState()
+    const state = props.store.getState()
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
@@ -21,15 +23,18 @@ function App(props: Props) {
                 <Navbar/>
 
                 <div className='app-wrapper-content'>
-                    <Route path='/dialogs' render={() => <Dialogs
-                        store={props.store}
-                    />}/>
+                    <Route
+                        path='/dialogs'
+                        render={() => <DialogsContainer
+                            store={props.store}
+                        />}/>
 
                     <Route path='/profile'
                            render={() =>
                                <Profiler
-                                   profilePage={state.profilePage}
-                                   dispatch={props.store.dispatch.bind(props.store)}
+                                   store={props.store}
+                                   // profilePage={state.profilePage}
+                                   //dispatch={props.store.dispatch.bind(props.store)}
                                />}
                     />
                 </div>
@@ -37,7 +42,6 @@ function App(props: Props) {
         </BrowserRouter>
     );
 }
-
 
 
 export default App;

@@ -6,10 +6,24 @@ type postMessageType = {
     message: string,
     likesCount: number,
 }
+type InitialStateType = {
+    posts:postMessageType[]
+    newPostText: string
+}
+let initialState:InitialStateType = {
+    posts: [
+        {id: 1, message: 'Hi, how are you?', likesCount: 2},
+        {id: 2, message: 'Its my first post', likesCount: 5},
+        {id: 3, message: 'Its my first post1', likesCount: 55},
+        {id: 4, message: 'Its my first post2', likesCount: 9},
+    ],
+    newPostText: 'Hello'
+}
 
-export const profileReducer = (state: any, action: any) => {
 
-    switch (action.type){
+export const profileReducer = (state:InitialStateType= initialState, action: any) => {
+
+    switch (action.type) {
         case ADD_POST:
             const newPost: postMessageType = {
                 id: 5,

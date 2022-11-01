@@ -3,12 +3,14 @@ import "./MyPosts.module.css";
 import P from "./MyPosts.module.css";
 import {Post} from "./Post/Posts";
 import {addPostAC, changeNewTextAC} from "../../../redux/profile-reducer";
-import {ActionsTypes} from "../../Redux/State";
+import {ActionsTypes} from "../../Redux/store";
 
 type Props = {
     posts: Array<Posts>
-    dispatch: (action: ActionsTypes) => void
+    // dispatch: (action: ActionsTypes) => void
     newPostText: string
+    dispatch: (text: string) => void
+    addPost: (text: string) => void
 }
 type Posts = {
     id: number
@@ -17,21 +19,21 @@ type Posts = {
 
 }
 
-export const MyPosts = (props: Props) => {
+const MyPosts = (props: Props) => {
     let postsElements = props.posts
         .map(elem => <Post message={elem.message} likesCount={elem.likesCount}/>)
 
     let newPostElement = React.createRef<HTMLTextAreaElement>();
 
     let addPost = () => {
-        let text = newPostElement.current!.value;
+        // let text = newPostElement.current!.value;
         props.dispatch(addPostAC(text));
     }
 
     const onPostChange = () => {
         let text = newPostElement.current!.value;
         let action = changeNewTextAC(text);
-        props.dispatch(action)
+        props.dispatch(action);
     }
 
     return (
@@ -52,3 +54,5 @@ export const MyPosts = (props: Props) => {
         </div>
     )
 }
+
+export default MyPosts;

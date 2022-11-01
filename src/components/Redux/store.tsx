@@ -28,7 +28,6 @@ export const store: StoreType = {
                 {id: 3, message: 'Its my first post1', likesCount: 55},
                 {id: 4, message: 'Its my first post2', likesCount: 9},
             ],
-
             newPostText: 'Hello'
         },
         dialogsPage: {
@@ -52,7 +51,6 @@ export const store: StoreType = {
     },
     _callSubscriber() {
     },
-
 
     changeNewText(newText: string) {
         this._state.profilePage.newPostText = newText;
@@ -117,11 +115,4 @@ export type RootStateType = {
     sidebar: SidebarType
 }
 
-// export type State = typeof state
-//@ts-ignore
 window.store = store;
-
-
-// rerenderEntireTree(){
-//     console.log('WWWWWWW')
-// },
