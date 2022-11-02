@@ -3,7 +3,6 @@ import "./MyPosts.module.css";
 import P from "./MyPosts.module.css";
 import {Post} from "./Post/Posts";
 import {addPostAC, changeNewTextAC} from "../../../redux/profile-reducer";
-import {ActionsTypes} from "../../Redux/store";
 
 type Props = {
     posts: Array<Posts>

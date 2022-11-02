@@ -64,7 +64,7 @@ export const store: StoreType = {
     dispatch(action) { // что именно сделать type: 'ADD-POST'
 
         this._state.profilePage = profileReducer(this._state.profilePage, action);
-        this._state.dialogsPage = dialogsReducer(this._state.profilePage, action);
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
         this._state.sidebar = sidebarReducer(this._state.profilePage, action);
 
         this._callSubscriber(this._state);
@@ -102,17 +102,18 @@ type ProfilePageType = {
     posts: Array<PostType>
 }
 
-type DialogPageType = {
+export type DialogPageType = {
     dialogs: Array<DialogType>
     messages: Array<MessageType>
     newMessageBody: string
 }
 
 type SidebarType = {}
+
 export type RootStateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogPageType
     sidebar: SidebarType
 }
-
+//@ts-ignore
 window.store = store;

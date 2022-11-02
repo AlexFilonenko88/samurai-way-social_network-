@@ -2,12 +2,13 @@ import React, {ChangeEvent} from "react";
 import D from './Dialogs.module.css'
 import {Message} from "./Message/Message";
 import {AppStoreType} from "../Redux/redux-store";
+import {DialogPageType} from "../Redux/store";
 
 type Props = {
     store: AppStoreType
     updateNewMessageBody: (body: string) => void
     sendMessage: () => void
-    dialogPage: state
+    dialogPage: DialogPageType
 }
 
 function DialogItem(props: { name: string, id: number }) {

@@ -30,6 +30,7 @@ export const DialogsContainer = (props: Props) => {
             updateNewMessageBody={onNewMessageChange}
             sendMessage={onSendMessageClick}
             dialogPage={state}
+            store={props.store}
         />
 
     )
