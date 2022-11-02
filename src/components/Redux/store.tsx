@@ -61,7 +61,7 @@ export const store: StoreType = {
         this._callSubscriber = callback;
     },
 
-    dispatch(action) { // что именно сделать type: 'ADD-POST'
+    dispatch(action) {
 
         this._state.profilePage = profileReducer(this._state.profilePage, action);
         this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
