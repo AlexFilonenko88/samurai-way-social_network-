@@ -5,7 +5,7 @@ import {AppStoreType} from "../Redux/redux-store";
 
 
 type Props = {
-    store:AppStoreType
+   // store:AppStoreType
 //     profilePage: any
 //     dispatch: (action: ActionsTypes) => void
 }
@@ -15,7 +15,7 @@ export const Profiler = (props: Props) => {
         <div>
             <ProfilerInfo/>
             <MyPostsContainer
-                store={props.store}
+
                 // posts={props.profilePage.posts}
                 // newPostText={props.profilePage.newPostText}
                 // dispatch={props.dispatch}

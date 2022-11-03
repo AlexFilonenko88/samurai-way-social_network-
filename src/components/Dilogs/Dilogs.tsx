@@ -5,10 +5,10 @@ import {AppStoreType} from "../Redux/redux-store";
 import {DialogPageType} from "../Redux/store";
 
 type Props = {
-    store: AppStoreType
+  //  store: AppStoreType
     updateNewMessageBody: (body: string) => void
-    sendMessage: () => void
-    dialogPage: DialogPageType
+    sendMessage: (body: string) => void
+    dialogsPage: DialogPageType
 }
 
 function DialogItem(props: { name: string, id: number }) {
@@ -19,17 +19,17 @@ export const Dialogs = (props: Props) => {
 
     // let state = props.store.getState().dialogsPage;
 
-    let state = props.store.getState()
+   // let state = props.store.getState()
 
-    let dialogsElements = state.dialogsPage.dialogs.map((dailog: any) => <DialogItem name={dailog.name} id={dailog.id}/>);
+    let dialogsElements = props.dialogsPage.dialogs.map((dailog: any) => <DialogItem name={dailog.name} id={dailog.id}/>);
 
-    let messsagesElements = state.dialogsPage.messages.map((m: any) => <Message message={m.message}/>);
+    let messsagesElements = props.dialogsPage.messages.map((m: any) => <Message message={m.message}/>);
 
-    let newMessageBody = state.dialogsPage.newMessageBody;
+    let newMessageBody = props.dialogsPage.newMessageBody;
 
     let onSendMessageClick = () => {
         // props.store.dispatch(sendMessageCreator());
-        props.sendMessage();
+        props.sendMessage(newMessageBody);
     }
 
     let onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {

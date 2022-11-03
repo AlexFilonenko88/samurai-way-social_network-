@@ -7,7 +7,7 @@ import {ActionsTypes} from "../../Redux/store";
 
 type Props = {
     posts: Array<Posts>
-    dispatch: (action: ActionsTypes) => void
+    updateNewPostText: (text: string) => void
     newPostText: string
     // dispatch: (text: string) => void
     addPost: (text: string) => void
@@ -27,12 +27,12 @@ const MyPosts = (props: Props) => {
 
     let addPost = () => {
         let text = newPostElement.current!.value;
-        props.dispatch(addPostAC(text));
+        props.addPost(text);
     }
 
     const onPostChange = () => {
         let text = newPostElement.current!.value;
-        props.dispatch(changeNewTextAC(text));
+        props.updateNewPostText(text);
     }
 
     return (
