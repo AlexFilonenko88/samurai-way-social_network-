@@ -1,8 +1,6 @@
 import React from "react";
 import {ProfilerInfo} from './ProfilerInfo/ProfilerInfo'
 import {MyPostsContainer} from "./MyPosts/MyPostsContainer";
-import {AppStoreType} from "../Redux/redux-store";
-
 
 type Props = {
    // store:AppStoreType
@@ -10,7 +8,7 @@ type Props = {
 //     dispatch: (action: ActionsTypes) => void
 }
 
-export const Profiler = (props: Props) => {
+export const Profile = (props: Props) => {
     return (
         <div>
             <ProfilerInfo/>

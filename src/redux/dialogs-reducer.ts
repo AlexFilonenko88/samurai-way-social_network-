@@ -1,5 +1,6 @@
 const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY';
 const SEND_MESSAGE = 'SEND-MESSAGE';
+const ADD_POST = 'ADD_POST';
 
 type postDialogsType = {
     id: number,
@@ -12,12 +13,12 @@ type postMessageType = {
 }
 
 type InitialStateType = {
-    dialogs:postDialogsType[],
+    dialogs: postDialogsType[],
     messages: postMessageType[],
     newMessageBody: string
 }
 
-let initialState: InitialStateType =  {
+let initialState: InitialStateType = {
     dialogs: [
         {id: 1, name: "Alex"},
         {id: 2, name: "Alex1"},
@@ -35,16 +36,32 @@ let initialState: InitialStateType =  {
     newMessageBody: "",
 }
 
-export const dialogsReducer = (state:InitialStateType= initialState, action: any) => {
+export const dialogsReducer = (state: InitialStateType = initialState, action: any): InitialStateType => {
     switch (action.type) {
-        case UPDATE_NEW_MESSAGE_BODY:
-            state.newMessageBody = action.body;
+        // case ADD_POST: { // добавил !!!
+        //     let newPost = {
+        //         id: 5,
+        //         message: state.newPostText,
+        //         likesCount: 0
+        //     };
+        //     let stateCopy = {...state};
+        //     stateCopy.posts = [...state.posts]
+        //     stateCopy.posts.push(newPost);
+        //     stateCopy.newPostText = '';
+        //     return state;
+        // }
+        case UPDATE_NEW_MESSAGE_BODY: {
+            let stateCopy = {...state};
+            stateCopy.newMessageBody = action.body;
             return state;
-        case SEND_MESSAGE:
-            let body = state.newMessageBody;
-            state.newMessageBody = '';
-            state.messages.push({id: 6, message: body});
+        }
+        case SEND_MESSAGE: {
+            let stateCopy = {...state};
+            let body = stateCopy.newMessageBody;
+            stateCopy.newMessageBody = '';
+            stateCopy.messages.push({id: 6, message: body});
             return state;
+        }
         default:
             return state;
     }

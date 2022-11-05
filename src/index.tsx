@@ -17,8 +17,6 @@ export const renderTree = () => {
         document.getElementById('root'));
 }
 
-store.subscribe(renderTree);
+// store.subscribe(renderTree);
 
-renderTree();
-
-// <App /> // store={store}
+renderTree(); // ???
