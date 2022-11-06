@@ -7,10 +7,10 @@ type postMessageType = {
     likesCount: number,
 }
 type InitialStateType = {
-    posts:postMessageType[]
+    posts: postMessageType[]
     newPostText: string
 }
-let initialState:InitialStateType = {
+let initialState: InitialStateType = {
     posts: [
         {id: 1, message: 'Hi, how are you?', likesCount: 2},
         {id: 2, message: 'Its my first post', likesCount: 5},
@@ -21,7 +21,7 @@ let initialState:InitialStateType = {
 }
 
 
-export const profileReducer = (state:InitialStateType= initialState, action: any) => {
+export const profileReducer = (state: InitialStateType = initialState, action: any) => {
 
     switch (action.type) {
         case ADD_POST:
@@ -30,14 +30,17 @@ export const profileReducer = (state:InitialStateType= initialState, action: any
                 message: state.newPostText,
                 likesCount: 0,
             };
-
-            state.posts.push(newPost);
-            state.newPostText = '';
-            return state
-        case UPDATE_NEW_POST_TEXT:
-            console.log('new text', action.postText)
-            state.newPostText = action.postText;
-            return state;
+            return {
+                ...state,
+                posts: [...state.posts, newPost],
+                newPost: '',
+            }
+        case UPDATE_NEW_POST_TEXT: {
+            return {
+                ...state,
+                newPostText: action.postText,
+            }
+        }
         default:
             return state;
     }

@@ -38,29 +38,19 @@ let initialState: InitialStateType = {
 
 export const dialogsReducer = (state: InitialStateType = initialState, action: any): InitialStateType => {
     switch (action.type) {
-        // case ADD_POST: { // добавил !!!
-        //     let newPost = {
-        //         id: 5,
-        //         message: state.newPostText,
-        //         likesCount: 0
-        //     };
-        //     let stateCopy = {...state};
-        //     stateCopy.posts = [...state.posts]
-        //     stateCopy.posts.push(newPost);
-        //     stateCopy.newPostText = '';
-        //     return state;
-        // }
         case UPDATE_NEW_MESSAGE_BODY: {
-            let stateCopy = {...state};
-            stateCopy.newMessageBody = action.body;
-            return state;
+            return {
+                ...state,
+                newMessageBody: action.body
+            };
         }
         case SEND_MESSAGE: {
-            let stateCopy = {...state};
-            let body = stateCopy.newMessageBody;
-            stateCopy.newMessageBody = '';
-            stateCopy.messages.push({id: 6, message: body});
-            return state;
+            let body = state.newMessageBody;
+            return {
+                ...state,
+                newMessageBody: '',
+                messages: [...state.messages, {id: 6, message: body}],
+            };
         }
         default:
             return state;

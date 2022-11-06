@@ -16,9 +16,9 @@ function DialogItem(props: { name: string, id: number }) {
 
 export const Dialogs = (props: Props) => {
 
-    let dialogsElements = props.dialogsPage.dialogs.map((dailog: any) => <DialogItem name={dailog.name} id={dailog.id}/>);
+    let dialogsElements = props.dialogsPage.dialogs.map((dailog: any) => <DialogItem name={dailog.name} key={dailog.id} id={dailog.id}/>);
 
-    let messsagesElements = props.dialogsPage.messages.map((m: any) => <Message message={m.message}/>);
+    let messsagesElements = props.dialogsPage.messages.map((m: any) => <Message message={m.message} key={m.id}/>);
 
     let newMessageBody = props.dialogsPage.newMessageBody;
 

@@ -19,10 +19,10 @@ let mapStateToProps = (state: AppStoreType) => {
 
 let mapDispatchToProps = (dispatch: Dispatch) => {
     return {
-        updateNewMessageBody: () => {
+        sendMessage: () => {
             dispatch(sendMessageCreator());
         },
-        sendMessage: (body: string) => {
+        updateNewMessageBody: (body: string) => {
             dispatch(updateNewMessageBodyCreator(body));
         },
     }

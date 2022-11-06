@@ -2,14 +2,11 @@ import React, {useRef, createRef} from "react";
 import "./MyPosts.module.css";
 import P from "./MyPosts.module.css";
 import {Post} from "./Post/Posts";
-import {addPostAC, changeNewTextAC} from "../../../redux/profile-reducer";
-import {ActionsTypes} from "../../Redux/store";
 
 type Props = {
     posts: Array<Posts>
     updateNewPostText: (text: string) => void
     newPostText: string
-    // dispatch: (text: string) => void
     addPost: (text: string) => void
 }
 type Posts = {
