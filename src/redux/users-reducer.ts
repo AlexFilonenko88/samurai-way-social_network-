@@ -2,16 +2,19 @@ const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS';
 
-type postMessageType = {
+export type UserType = {
   id: number,
   photoUrl: string,
   followed: boolean,
   fullName: string,
   status: string,
-  location: {},
+  location: {
+    country: string
+    city: string
+  },
 }
 export type InitialStateType = {
-  users: postMessageType[]
+  users: UserType[]
 }
 let initialState: InitialStateType = {
   users: [
@@ -21,7 +24,7 @@ let initialState: InitialStateType = {
       followed: false,
       fullName: 'Dmitry',
       status: 'I am a boss',
-      location: {city: 'Minsk', counter: 'Belarus'}
+      location: {city: 'Minsk', country: 'Belarus'}
     },
     {
       id: 2,
@@ -29,7 +32,7 @@ let initialState: InitialStateType = {
       followed: true,
       fullName: 'Sasha',
       status: 'I am a boss too',
-      location: {city: 'Moscow', counter: 'Russia'}
+      location: {city: 'Moscow', country: 'Russia'}
     },
     {
       id: 3,
@@ -37,7 +40,7 @@ let initialState: InitialStateType = {
       followed: false,
       fullName: 'Andrew',
       status: 'I am a boss too',
-      location: {city: 'Kiev', counter: 'Ukraine'}
+      location: {city: 'Kiev', country: 'Ukraine'}
     },
   ],
 }

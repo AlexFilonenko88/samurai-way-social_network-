@@ -1,8 +1,9 @@
 import React from "react";
 import styles from './users.module.css';
-import {InitialStateType} from '../../redux/users-reducer'
+import {CommonPropsType} from "./UsersContainer";
+//import {InitialStateType} from '../../redux/users-reducer'
 
-let Users = (props: InitialStateType) => {
+let Users = (props: CommonPropsType) => {
   // props.setUsers([
   //   {
   //     id: 1,
