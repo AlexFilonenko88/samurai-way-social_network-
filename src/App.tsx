@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './App.css';
 import {Header} from "./components/Header/Header";
 import {Navbar} from "./components/Navbar/Navbar";
@@ -7,12 +7,20 @@ import {BrowserRouter, Route} from "react-router-dom";
 import {DialogsContainer} from "./components/Dilogs/DilogsContainer";
 import Users from "./components/Users/Users";
 import UsersContainer from "./components/Users/UsersContainer";
+import axios from "axios";
 
 type Props = {
   //  store: AppStoreType
 }
 
 function App(props: Props) {
+  useEffect(() => {
+    axios.get("https://social-network.samuraijs.com/api/1.0/users")
+      .then(response => {
+        console.log(response.data.item)
+      });
+  }, [])
+
   return (
     <BrowserRouter>
       <div className='app-wrapper'>

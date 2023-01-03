@@ -1,6 +1,7 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {ProfilerInfo} from './ProfilerInfo/ProfilerInfo'
 import {MyPostsContainer} from "./MyPosts/MyPostsContainer";
+
 
 type Props = {
    // store:AppStoreType
@@ -13,10 +14,6 @@ export const Profile = (props: Props) => {
         <div>
             <ProfilerInfo/>
             <MyPostsContainer
-
-                // posts={props.profilePage.posts}
-                // newPostText={props.profilePage.newPostText}
-                // dispatch={props.dispatch}
             />
         </div>
     )
