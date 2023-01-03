@@ -4,16 +4,27 @@ import {CommonPropsType} from "./UsersContainer";
 import axios from "axios";
 import userPhoto from '../../../src/assets/images/user.png';
 
-class Users extends React.Component {
-  constructor(props: CommonPropsType) {
+class UsersC extends React.Component<CommonPropsType> {
+    constructor(props: CommonPropsType) {
     super(props);
 
-    axios.get("https://social-network.samuraijs.com/api/1.0/users")
-      .then(response => {
-        this.props.setUsers(response.data.items);
-      }
+    // this.getUsers();
 
-    render()
+    // axios.get("https://social-network.samuraijs.com/api/1.0/users")
+    //   .then(response => {
+    //       this.props.setUsers(response.data.items);
+    //     }
+    //   )
+  }
+  getUsers = () => {
+    if (this.props.users.length === 0) {
+      axios.get("https://social-network.samuraijs.com/api/1.0/users")
+        .then(response => {
+          this.props.setUsers(response.data.items);
+        });
+    }
+  }
+      render()
     {
       return <div>
         <button onClick={this.getUsers}>Get Users</button>
@@ -25,8 +36,8 @@ class Users extends React.Component {
             </div>
           <div>
             {u.followed
-              ? <button onClick={() => props.unfollow(u.id)}>Unfollow</button>
-              : <button onClick={() => props.follow(u.id)}>Follow</button>}
+              ? <button onClick={() => this.props.unfollow(u.id)}>Unfollow</button>
+              : <button onClick={() => this.props.follow(u.id)}>Follow</button>}
           </div>
         </span>
             <span>
@@ -45,6 +56,4 @@ class Users extends React.Component {
     }
   }
 
-  export
-  default
-  Users;
+  export default UsersC;

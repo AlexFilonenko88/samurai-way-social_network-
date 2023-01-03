@@ -1,6 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
-import UsersC from "./UsersC";
+import UsersC from './UsersС';
 import {followAC, setUsersAC, unfollowAC, UserType} from "../../redux/users-reducer";
 import {AppStoreType} from "../Redux/redux-store";
 
