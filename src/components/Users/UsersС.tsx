@@ -4,21 +4,21 @@ import {CommonPropsType} from "./UsersContainer";
 import axios from "axios";
 import userPhoto from '../../../src/assets/images/user.png';
 
-let Users = (props: CommonPropsType) => {
-  let getUsers = () => {
-    if (props.users.length === 0) {
-      axios.get("https://social-network.samuraijs.com/api/1.0/users")
-        .then(response => {
-          console.log(response.data.item)
-          props.setUsers(response.data.items);
-        });
-    }
-  }
+class Users extends React.Component {
+  constructor(props: CommonPropsType) {
+    super(props);
 
-  return <div>
-    <button onClick={getUsers}>Get Users</button>
+    axios.get("https://social-network.samuraijs.com/api/1.0/users")
+      .then(response => {
+        this.props.setUsers(response.data.items);
+      }
+
+    render()
     {
-      props.users.map(u => <div key={u.id}>
+      return <div>
+        <button onClick={this.getUsers}>Get Users</button>
+        {
+          this.props.users.map(u => <div key={u.id}>
         <span>
             <div>
               <img src={u.photos.small !== null ? u.photos.small : userPhoto} className={styles.userPhoto}/>
@@ -29,7 +29,7 @@ let Users = (props: CommonPropsType) => {
               : <button onClick={() => props.follow(u.id)}>Follow</button>}
           </div>
         </span>
-        <span>
+            <span>
           <span>
             <div>{u.name}</div>
             <div>{u.status}</div>
@@ -39,9 +39,12 @@ let Users = (props: CommonPropsType) => {
             <div>{u.location.city}</div>*/}
           </span>
         </span>
-      </div>)
+          </div>)
+        }
+      </div>
     }
-  </div>
-}
+  }
 
-export default Users;
+  export
+  default
+  Users;

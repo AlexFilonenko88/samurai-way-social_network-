@@ -1,6 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
-import Users from "./Users";
+import UsersC from "./UsersC";
 import {followAC, setUsersAC, unfollowAC, UserType} from "../../redux/users-reducer";
 import {AppStoreType} from "../Redux/redux-store";
 
@@ -16,6 +16,7 @@ type MapDispatchToPropsType = {
 export type CommonPropsType = MapStateToPropsType & MapDispatchToPropsType
 
 let mapStateToProps = (state: AppStoreType) => {
+  console.log(state.users.users)
   return {
     users: state.users.users
   }
@@ -35,4 +36,4 @@ let mapDispatchToProps = (dispatch: any) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Users);
+export default connect(mapStateToProps, mapDispatchToProps)(UsersC);
