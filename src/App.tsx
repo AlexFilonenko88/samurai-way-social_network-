@@ -14,13 +14,6 @@ type Props = {
 }
 
 function App(props: Props) {
-  useEffect(() => {
-    axios.get("https://social-network.samuraijs.com/api/1.0/users")
-      .then(response => {
-        console.log(response.data.item)
-      });
-  }, [])
-
   return (
     <BrowserRouter>
       <div className='app-wrapper'>

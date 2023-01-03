@@ -14,7 +14,9 @@ export type UserType = {
   },
   photos: {
     small: string,
-  }
+    large: string
+  },
+  name: string,
 }
 export type InitialStateType = {
   users: UserType[]
@@ -29,8 +31,10 @@ let initialState: InitialStateType = {
       status: 'I am a boss',
       location: {city: 'Minsk', country: 'Belarus'},
       photos: {
-        small: '131'
-      }
+        small: '131',
+        large: '333'
+      },
+      name: "Dmitry",
     },
     {
       id: 2,
@@ -40,8 +44,10 @@ let initialState: InitialStateType = {
       status: 'I am a boss too',
       location: {city: 'Moscow', country: 'Russia'},
       photos: {
-        small: '131'
-      }
+        small: '131',
+        large: '333'
+      },
+      name: "Sasha",
     },
     {
       id: 3,
@@ -51,8 +57,10 @@ let initialState: InitialStateType = {
       status: 'I am a boss too',
       location: {city: 'Kiev', country: 'Ukraine'},
       photos: {
-        small: '131'
-      }
+        small: '131',
+        large: '333'
+      },
+      name: "Andrew",
     },
   ],
 }
