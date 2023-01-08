@@ -5,31 +5,47 @@ import axios from "axios";
 import userPhoto from '../../../src/assets/images/user.png';
 
 class UsersC extends React.Component<CommonPropsType> {
-    constructor(props: CommonPropsType) {
+  constructor(props: CommonPropsType) {
     super(props);
 
     // this.getUsers();
+  }
 
-    // axios.get("https://social-network.samuraijs.com/api/1.0/users")
-    //   .then(response => {
-    //       this.props.setUsers(response.data.items);
-    //     }
-    //   )
-  }
-  getUsers = () => {
-    if (this.props.users.length === 0) {
-      axios.get("https://social-network.samuraijs.com/api/1.0/users")
-        .then(response => {
+  componentDidMount() {
+    axios.get("https://social-network.samuraijs.com/api/1.0/users")
+      .then(response => {
           this.props.setUsers(response.data.items);
-        });
-    }
+        }
+      )
   }
-      render()
-    {
-      return <div>
-        <button onClick={this.getUsers}>Get Users</button>
-        {
-          this.props.users.map(u => <div key={u.id}>
+
+  // по кнопке вызваь метод
+  // getUsers = () => {
+  //   if (this.props.users.length === 0) {
+  //     axios.get("https://social-network.samuraijs.com/api/1.0/users")
+  //       .then(response => {
+  //         this.props.setUsers(response.data.items);
+  //       });
+  //   }
+  // }
+  render() {
+
+    let pagesCount = this.props.totalUsersCount / this.props.pageSize;
+
+    const pages = [];
+    for (let i=1; i <= pagesCount; i++) {
+      pages.push(i);
+    }
+
+    return <div>
+      {/*<button>Get Users</button>*/}
+      <div>
+        {pages.map(p => {
+          <span className={true && styles.selectPage}>{p}</span>
+        })}
+      </div>
+      {
+        this.props.users.map(u => <div key={u.id}>
         <span>
             <div>
               <img src={u.photos.small !== null ? u.photos.small : userPhoto} className={styles.userPhoto}/>
@@ -40,7 +56,7 @@ class UsersC extends React.Component<CommonPropsType> {
               : <button onClick={() => this.props.follow(u.id)}>Follow</button>}
           </div>
         </span>
-            <span>
+          <span>
           <span>
             <div>{u.name}</div>
             <div>{u.status}</div>
@@ -50,10 +66,10 @@ class UsersC extends React.Component<CommonPropsType> {
             <div>{u.location.city}</div>*/}
           </span>
         </span>
-          </div>)
-        }
-      </div>
-    }
+        </div>)
+      }
+    </div>
   }
+}
 
-  export default UsersC;
+export default UsersC;

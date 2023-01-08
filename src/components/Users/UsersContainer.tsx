@@ -16,9 +16,10 @@ type MapDispatchToPropsType = {
 export type CommonPropsType = MapStateToPropsType & MapDispatchToPropsType
 
 let mapStateToProps = (state: AppStoreType) => {
-  console.log(state.users.users)
   return {
-    users: state.users.users
+    users: state.users.users,
+    pageSize: state.usersPage.pageSize,
+    totalUsersCount: state.usersPage.totalUsersCount,
   }
 }
 

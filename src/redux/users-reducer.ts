@@ -4,6 +4,13 @@ const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS';
 
+let initialState = {
+  users: [],
+  pageSize: 5,
+  totalUsersCount: 0,
+
+}
+
 export type UserType = {
   /* id: number,
    photoUrl: string,
