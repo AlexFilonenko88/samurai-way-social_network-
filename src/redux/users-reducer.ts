@@ -6,8 +6,53 @@ const SET_USERS = 'SET_USERS';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
 
+
+// let initialState: InitialStateType = {
+//   users: [
+//     /*   {
+//          id: 1,
+//          photoUrl: 'https://prekrasnaja.com/wp-content/uploads/2021/06/1-12.jpg',
+//          followed: false,
+//          fullName: 'Dmitry',
+//          status: 'I am a boss',
+//          location: {city: 'Minsk', country: 'Belarus'},
+//          photos: {
+//            small: '131',
+//            large: '333'
+//          },
+//          name: "Dmitry",
+//        },
+//        {
+//          id: 2,
+//          photoUrl: 'https://prekrasnaja.com/wp-content/uploads/2021/06/1-12.jpg',
+//          followed: true,
+//          fullName: 'Sasha',
+//          status: 'I am a boss too',
+//          location: {city: 'Moscow', country: 'Russia'},
+//          photos: {
+//            small: '131',
+//            large: '333'
+//          },
+//          name: "Sasha",
+//        },
+//        {
+//          id: 3,
+//          photoUrl: 'https://prekrasnaja.com/wp-content/uploads/2021/06/1-12.jpg',
+//          followed: false,
+//          fullName: 'Andrew',
+//          status: 'I am a boss too',
+//          location: {city: 'Kiev', country: 'Ukraine'},
+//          photos: {
+//            small: '131',
+//            large: '333'
+//          },
+//          name: "Andrew",
+//        },*/
+//   ],
+// }
+//
 let initialState = {
-  users: [ ],
+  users: [],
   pageSize: 5,
   totalUsersCount: 0,
   currentPage: 2,
@@ -40,50 +85,10 @@ export type UserType = {
   uniqueUrlName: string,
 }
 export type InitialStateType = {
-  users: UserType[]
-}
-let initialState: InitialStateType = {
-  users: [
-    /*   {
-         id: 1,
-         photoUrl: 'https://prekrasnaja.com/wp-content/uploads/2021/06/1-12.jpg',
-         followed: false,
-         fullName: 'Dmitry',
-         status: 'I am a boss',
-         location: {city: 'Minsk', country: 'Belarus'},
-         photos: {
-           small: '131',
-           large: '333'
-         },
-         name: "Dmitry",
-       },
-       {
-         id: 2,
-         photoUrl: 'https://prekrasnaja.com/wp-content/uploads/2021/06/1-12.jpg',
-         followed: true,
-         fullName: 'Sasha',
-         status: 'I am a boss too',
-         location: {city: 'Moscow', country: 'Russia'},
-         photos: {
-           small: '131',
-           large: '333'
-         },
-         name: "Sasha",
-       },
-       {
-         id: 3,
-         photoUrl: 'https://prekrasnaja.com/wp-content/uploads/2021/06/1-12.jpg',
-         followed: false,
-         fullName: 'Andrew',
-         status: 'I am a boss too',
-         location: {city: 'Kiev', country: 'Ukraine'},
-         photos: {
-           small: '131',
-           large: '333'
-         },
-         name: "Andrew",
-       },*/
-  ],
+  users: UserType[],
+  pageSize: number
+  totalUsersCount: number
+  currentPage: number
 }
 
 export const userReducer = (state: InitialStateType = initialState, action: any) => {

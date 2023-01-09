@@ -12,10 +12,10 @@ class UsersC extends React.Component<CommonPropsType> {
   }
 
   componentDidMount() {
-    axios.get(`https://social-network.samuraijs.com/api/1.0/users&page=${pageNumber}&count=${this.props.pageSize}`)
+    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
       .then(response => {
           this.props.setUsers(response.data.items);
-        this.props.setTotalUsersCount(response.data.totalCount);
+        this.props.setTotalUsersCount(response.data.items);
         }
       )
   }
@@ -30,7 +30,7 @@ class UsersC extends React.Component<CommonPropsType> {
   //   }
   // }
 
-  onPageChanged= (pageNumber) => {
+  onPageChanged= (pageNumber: number) => {
     this.props.setCurrentPage(pageNumber);
   }
 
@@ -47,7 +47,7 @@ class UsersC extends React.Component<CommonPropsType> {
       {/*<button>Get Users</button>*/}
       <div>
         {pages.map(p => {
-          return <span className={this.props.currentPage === p && styles.selectPage}
+          return <span className={this.props.currentPage === p ? styles.selectPage: ''}
           onClick={(e)=>{this.onPageChanged(p)}}
           >{p}</span>
         })}
