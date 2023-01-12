@@ -2,10 +2,23 @@ import React from "react";
 import styles from "./users.module.css";
 import userPhoto from "../../assets/images/user.png";
 import {CommonPropsType} from "./UsersContainer";
+import {UserType} from "../../redux/users-reducer";
 
-let UsersF = (props: CommonPropsType) => {
+type UserFType = {
+  users: UserType[]
+  onPageChanged: (pageNumber: number)=> void
+  totalUsersCount: number
+  currentPage: number
+  pageSize: number
+  follow: (userId: number) => void
+  unfollow: (userId: number) => void
+}
 
-  let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
+// описать props  и избавиться от Partialon  {PageChanged: (pageNumber: number)=> void}
+
+let UsersF = (props:UserFType) => {
+
+  let pagesCount = Math.ceil(props.totalUsersCount! / props.pageSize);
 
   const pages = [];
   for (let i=1; i <= pagesCount; i++) {
@@ -31,8 +44,8 @@ let UsersF = (props: CommonPropsType) => {
             </div>
           <div>
             {u.followed
-              ? <button onClick={() => props.unfollow(u.id)}>Unfollow</button>
-              : <button onClick={() => props.follow(u.id)}>Follow</button>}
+              ? <button onClick={() => props.unfollow!(u.id)}>Unfollow</button>
+              : <button onClick={() => props.follow!(u.id)}>Follow</button>}
           </div>
         </span>
         <span>

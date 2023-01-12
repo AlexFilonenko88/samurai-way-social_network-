@@ -10,8 +10,9 @@ import {
 } from "../../redux/users-reducer";
 import {AppStoreType} from "../Redux/redux-store";
 import {Dispatch} from "redux";
-import axios from "axios/index";
 import UsersF from "./UsersF";
+import axios from "axios";
+import UserFType from './UsersF';
 
 class UsersContainer extends React.Component<CommonPropsType> {
   constructor(props: CommonPropsType) {
@@ -61,7 +62,7 @@ type MapStateToPropsType = {
   pageSize: number
   totalUsersCount: number
   currentPage: number
-  onPageChanged: (pages: number) => void
+  // onPageChanged: (pages: number) => void
 }
 
 type MapDispatchToPropsType = {
@@ -70,16 +71,18 @@ type MapDispatchToPropsType = {
   setUsers: (users: string) => void
   setTotalUsersCount: (totalCount: number) => void
   setCurrentPage: (pageNumber: number) => void
+
 }
-export type CommonPropsType = MapStateToPropsType & MapDispatchToPropsType
+export type CommonPropsType = MapStateToPropsType & MapDispatchToPropsType;
 
 let mapStateToProps = (state: AppStoreType) => {
   return {
     users: state.users.users,
-    //  pageSize: state.usersPage.pageSize,
+     // pageSize: state.usersPage.pageSize,
     pageSize: state.users.pageSize,
     totalUsersCount: state.users.totalUsersCount,
     currentPage: state.users.currentPage,
+    // onPageChanged: state.users.
   }
 }
 
